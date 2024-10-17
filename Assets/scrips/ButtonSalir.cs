@@ -7,6 +7,10 @@ public class ButtonSalir : MonoBehaviour
     // Start is called before the first frame update
     public void SalirDelJuego()
     {
-        Application.Quit();
+    #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+    #else
+    Application.Quit();
+    #endif
     }
 }
