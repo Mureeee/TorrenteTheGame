@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/controles.unity
     guid: 9e01d351c8d3a65409cb5c84405c051b
+  - enabled: 1
+    path: Assets/Scenes/Partida.unity
+    guid: 22acd2ff50d35fd4492982a56b847327
   m_configObjects: {}
