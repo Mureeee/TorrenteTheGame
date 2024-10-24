@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,7 @@ public class MovimientoT : MonoBehaviour
     private Vector3 velocity;
     public float direccioIndicadaX;
     public float direccioIndicadaY;
+    public GameObject porta1;
 
 
     // Start is called before the first frame update
@@ -57,8 +59,14 @@ public class MovimientoT : MonoBehaviour
     {
         if (objecteTocat.gameObject.tag == "Porta")
         {
-            GameObject.Find("TextPorta").SetActive(true);
+            //GameObject.Find("TextPorta").SetActive(true);
+            porta1.SetActive(true);
+            Invoke("DesactivarPorta1", 2f);
         }
+    }
+    public void DesactivarPorta1()
+    {
+        porta1.SetActive(false);
     }
 
 

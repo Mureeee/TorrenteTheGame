@@ -762,8 +762,8 @@ Transform:
   m_GameObject: {fileID: 244032517}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.009720273, y: -1.3825954, z: 0}
-  m_LocalScale: {x: 2.3820431, y: 1.3063072, z: 1}
+  m_LocalPosition: {x: 0.0019, y: -1.3121, z: 0}
+  m_LocalScale: {x: 2.397549, y: 1.1653566, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1367035886}
@@ -2062,8 +2062,8 @@ Transform:
   m_GameObject: {fileID: 703010554}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.634658, y: -1.4805685, z: 0}
-  m_LocalScale: {x: 0.88366115, y: 0.97973037, z: 1}
+  m_LocalPosition: {x: -1.634658, y: -1.4409, z: 0}
+  m_LocalScale: {x: 0.88366115, y: 0.9004702, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1367035886}
@@ -2128,7 +2128,7 @@ GameObject:
   - component: {fileID: 759129014}
   m_Layer: 0
   m_Name: Torrente
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2173,7 +2173,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 019059f539fddde44a89cd3f4bdbeef3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2194,7 +2194,7 @@ Transform:
   m_GameObject: {fileID: 759129010}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.96, y: -4.13, z: 0}
+  m_LocalPosition: {x: -4.2, y: -4.27, z: 0}
   m_LocalScale: {x: 0.723065, y: 0.73233604, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3311,8 +3311,8 @@ Transform:
   m_GameObject: {fileID: 1262658765}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.6258953, y: -1.3695323, z: 0}
-  m_LocalScale: {x: 1.1526015, y: 1.3063072, z: 1}
+  m_LocalPosition: {x: -2.644, y: -1.3299, z: 0}
+  m_LocalScale: {x: 1.1162945, y: 1.2270143, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1367035886}
