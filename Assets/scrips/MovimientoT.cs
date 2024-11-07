@@ -1,7 +1,12 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using static UnityEditor.ShaderData;
+using TMPro;
 
 public class MovimientoT : MonoBehaviour
 {
@@ -11,7 +16,15 @@ public class MovimientoT : MonoBehaviour
     private Vector3 velocity;
     public float direccioIndicadaX;
     public float direccioIndicadaY;
+    public GameObject porta1;
+    public bool textOperacion = false;
 
+    //--------------------------------------------
+    public GameObject panelOperacion;
+    public TextMeshPro operacionText;
+    //public InputField respuestaInput;
+    public GameObject P1;
+    private int numero1, numero2, resultadoCorrecto;
 
     // Start is called before the first frame update
     void Start()
@@ -27,17 +40,53 @@ public class MovimientoT : MonoBehaviour
         maxPantalla.x = maxPantalla.x - meitatMidaImatgeX;
 
         rigidbody = GetComponent<Rigidbody2D>();
+
+        panelOperacion.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+
         moverTorrente();
         colisionTorrente();
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            GenerarOperacion();
+        }
+
     }
 
+    public void GenerarOperacion()
+    {
+        // Generar dos números aleatorios
+        numero1 = Random.Range(1, 10);
+        numero2 = Random.Range(1, 10);
+        resultadoCorrecto = numero1 + numero2; // Puedes cambiar esto para otros operadores
 
-    public void moverTorrente()
+        // Mostrar la operación
+        operacionText.text = $"{numero1} + {numero2} = ?";
+        panelOperacion.SetActive(true); // Muestra el panel
+    }
+
+    /*public void VerificarRespuesta()
+    {
+        int respuestaUsuario;
+        if (int.TryParse(respuestaInput.text, out respuestaUsuario) && respuestaUsuario == resultadoCorrecto)
+        {
+            // Si la respuesta es correcta, desactiva la colisión
+            //P1.enabled = false;
+            panelOperacion.SetActive(false); // Oculta el panel
+            Debug.Log("¡Respuesta correcta!");
+        }
+        else
+        {
+            Debug.Log("Respuesta incorrecta. Intenta de nuevo.");
+        }
+    }*/
+
+        public void moverTorrente()
     {
         direccioIndicadaX = Input.GetAxisRaw("Horizontal");
         direccioIndicadaY = Input.GetAxisRaw("Vertical");
@@ -57,9 +106,20 @@ public class MovimientoT : MonoBehaviour
     {
         if (objecteTocat.gameObject.tag == "Porta")
         {
-            GameObject.Find("TextPorta").SetActive(true);
+            //GameObject.Find("TextPorta").SetActive(true);
+            porta1.SetActive(true);
+            Invoke("DesactivarPorta1", 2f);
+            if (!textOperacion)
+            {
+                
+            }
         }
-    }
+        
 
+    }
+    public void DesactivarPorta1()
+    {
+        porta1.SetActive(false);
+    }
 
 }

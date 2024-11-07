@@ -8,6 +8,6 @@ public class ButtonPartida : MonoBehaviour
 {
     public void nuevaPartida()
     {
-        SceneManager.LoadScene("Partida");
+        SceneManager.LoadScene("Sala2");
     }
 }
