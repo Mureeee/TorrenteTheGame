@@ -60,12 +60,12 @@ public class MovimientoT : MonoBehaviour
 
     public void GenerarOperacion()
     {
-        // Generar dos números aleatorios
+        // Generar dos nï¿½meros aleatorios
         numero1 = Random.Range(1, 10);
         numero2 = Random.Range(1, 10);
         resultadoCorrecto = numero1 + numero2; // Puedes cambiar esto para otros operadores
 
-        // Mostrar la operación
+        // Mostrar la operaciï¿½n
         operacionText.text = $"{numero1} + {numero2} = ?";
         panelOperacion.SetActive(true); // Muestra el panel
     }
@@ -75,10 +75,10 @@ public class MovimientoT : MonoBehaviour
         int respuestaUsuario;
         if (int.TryParse(respuestaInput.text, out respuestaUsuario) && respuestaUsuario == resultadoCorrecto)
         {
-            // Si la respuesta es correcta, desactiva la colisión
+            // Si la respuesta es correcta, desactiva la colisiï¿½n
             //P1.enabled = false;
             panelOperacion.SetActive(false); // Oculta el panel
-            Debug.Log("¡Respuesta correcta!");
+            Debug.Log("ï¿½Respuesta correcta!");
         }
         else
         {
