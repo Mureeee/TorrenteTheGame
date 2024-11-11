@@ -5,7 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Porta
-  - calucla
+  - cofre
+  - sala
   layers:
   - Default
   - TransparentFX
