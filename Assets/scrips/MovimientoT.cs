@@ -108,8 +108,4 @@ public class MovimientoT : MonoBehaviour
     {
         porta1.SetActive(false);
     }
-
-    //COLISION TEXTO COFRE
-    
-
 }

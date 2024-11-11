@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ControlesEnPartida.unity
     guid: ad31fc10f9781fa48a7de92ad1f50732
+  - enabled: 1
+    path: Assets/Scenes/cofre.unity
+    guid: 36cfcfbe0052e9143a35665596156fb4
   m_configObjects: {}
