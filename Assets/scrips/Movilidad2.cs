@@ -13,12 +13,12 @@ public class Movilidad2 : MonoBehaviour
         _vel = 8f;
 
         rigidbody = GetComponent<Rigidbody2D>();
+        rigidbody.gravityScale = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-
         MovimientoTorrente();
     }
 

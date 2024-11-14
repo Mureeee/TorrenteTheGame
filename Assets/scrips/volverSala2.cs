@@ -21,6 +21,7 @@ public class volverSala2 : MonoBehaviour
     {
         if (objecteTocat.gameObject.tag == "sala")
         {
+            VariablesGlobales.escenaAnterior = "cofre";
             SceneManager.LoadScene("sala2");
         }
     }

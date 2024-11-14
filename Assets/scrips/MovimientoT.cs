@@ -43,6 +43,11 @@ public class MovimientoT : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
 
         panelOperacion.SetActive(false);
+
+        if(VariablesGlobales.escenaAnterior == "cofre")
+        {
+            transform.position = VariablesGlobales.posTorrenteGuardada;
+        }
     }
 
     // Update is called once per frame
@@ -99,7 +104,12 @@ public class MovimientoT : MonoBehaviour
         }
         if (objecteTocat.gameObject.tag == "sala")
         {
-            SceneManager.LoadScene("cofre");
+            VariablesGlobales.posTorrenteGuardada = transform.position;
+            if(VariablesGlobales.escenaAnterior != "cofre")
+            {
+                SceneManager.LoadScene("cofre");
+            }
+            
         }
     }
     
