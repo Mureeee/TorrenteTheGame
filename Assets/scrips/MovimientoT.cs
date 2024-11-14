@@ -24,8 +24,7 @@ public class MovimientoT : MonoBehaviour
     //--------------------------------------------
     public GameObject panelOperacion;
     public TextMeshPro operacionText;
-    //public InputField respuestaInput;
-    public GameObject P1;
+    private bool estaEnP1 = false; // Indica si el jugador está tocando P1
     private int numero1, numero2, resultadoCorrecto;
 
     // Start is called before the first frame update
@@ -45,7 +44,7 @@ public class MovimientoT : MonoBehaviour
 
         panelOperacion.SetActive(false);
 
-        if(VariablesGlobales.escenaAnterior == "cofre")
+        if (VariablesGlobales.escenaAnterior == "cofre")
         {
             transform.position = VariablesGlobales.posTorrenteGuardada;
         }
@@ -54,26 +53,28 @@ public class MovimientoT : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         moverTorrente();
         colisionTorrente();
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (estaEnP1 && Input.GetKeyDown(KeyCode.E))
         {
             GenerarOperacion();
         }
-
+        else if (!estaEnP1)
+        {
+            panelOperacion.SetActive(false);
+        }
     }
 
     //GENERAR OPERACION
     public void GenerarOperacion()
     {
-        // Generar dos n�meros aleatorios
+        // Generar dos números aleatorios
         numero1 = Random.Range(1, 10);
         numero2 = Random.Range(1, 10);
         resultadoCorrecto = numero1 + numero2; // Puedes cambiar esto para otros operadores
 
-        // Mostrar la operaci�n
+        // Mostrar la operación
         operacionText.text = $"{numero1} + {numero2} = ?";
         panelOperacion.SetActive(true); // Muestra el panel
     }
@@ -106,18 +107,30 @@ public class MovimientoT : MonoBehaviour
         if (objecteTocat.gameObject.tag == "sala")
         {
             VariablesGlobales.posTorrenteGuardada = transform.position;
-            if(VariablesGlobales.escenaAnterior != "cofre")
+            if (VariablesGlobales.escenaAnterior != "cofre")
             {
                 SceneManager.LoadScene("cofre");
             }
-            
         }
         if (objecteTocat.gameObject.tag == "salida")
         {
             SceneManager.LoadScene("casa");
         }
+        if (objecteTocat.gameObject.tag == "Porta")
+        {
+            estaEnP1 = true; // El jugador está tocando P1
+        }
     }
-    
+
+    private void OnCollisionExit2D(Collision2D objecteTocat)
+    {
+        if (objecteTocat.gameObject.tag == "Porta")
+        {
+            estaEnP1 = false; // El jugador ha salido de P1
+            panelOperacion.SetActive(false); // Asegúrate de que el panel se oculta al salir
+        }
+    }
+
     //DESACTIVAR PUERTA
     public void DesactivarPorta1()
     {
