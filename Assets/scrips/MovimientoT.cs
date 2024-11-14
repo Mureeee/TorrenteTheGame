@@ -17,6 +17,7 @@ public class MovimientoT : MonoBehaviour
     public float direccioIndicadaX;
     public float direccioIndicadaY;
     public GameObject porta1;
+    public GameObject cofre;
     public bool textOperacion = false;
 
     //--------------------------------------------
@@ -58,6 +59,7 @@ public class MovimientoT : MonoBehaviour
 
     }
 
+    //GENERAR OPERACION
     public void GenerarOperacion()
     {
         // Generar dos n�meros aleatorios
@@ -70,29 +72,15 @@ public class MovimientoT : MonoBehaviour
         panelOperacion.SetActive(true); // Muestra el panel
     }
 
-    /*public void VerificarRespuesta()
-    {
-        int respuestaUsuario;
-        if (int.TryParse(respuestaInput.text, out respuestaUsuario) && respuestaUsuario == resultadoCorrecto)
-        {
-            // Si la respuesta es correcta, desactiva la colisi�n
-            //P1.enabled = false;
-            panelOperacion.SetActive(false); // Oculta el panel
-            Debug.Log("�Respuesta correcta!");
-        }
-        else
-        {
-            Debug.Log("Respuesta incorrecta. Intenta de nuevo.");
-        }
-    }*/
-
-        public void moverTorrente()
+    //MOVIMIENTO TORRENTE
+    public void moverTorrente()
     {
         direccioIndicadaX = Input.GetAxisRaw("Horizontal");
         direccioIndicadaY = Input.GetAxisRaw("Vertical");
         Vector2 direccioIndicada = new Vector2(direccioIndicadaX, direccioIndicadaY).normalized;
     }
 
+    //COLISIONES TORRENTE
     public void colisionTorrente()
     {
         float inputHorizontal = Input.GetAxisRaw("Horizontal") * _vel;
@@ -101,25 +89,23 @@ public class MovimientoT : MonoBehaviour
         rigidbody.velocity = new Vector2(inputHorizontal, inputVertical);
     }
 
-
+    //COLISION TEXTO PUERTA
     public void OnCollisionEnter2D(Collision2D objecteTocat)
     {
         if (objecteTocat.gameObject.tag == "Porta")
         {
-            //GameObject.Find("TextPorta").SetActive(true);
             porta1.SetActive(true);
             Invoke("DesactivarPorta1", 2f);
-            if (!textOperacion)
-            {
-                
-            }
         }
-        
-
+        if (objecteTocat.gameObject.tag == "sala")
+        {
+            SceneManager.LoadScene("cofre");
+        }
     }
+    
+    //DESACTIVAR PUERTA
     public void DesactivarPorta1()
     {
         porta1.SetActive(false);
     }
-
 }
