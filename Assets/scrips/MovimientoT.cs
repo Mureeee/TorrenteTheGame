@@ -18,6 +18,7 @@ public class MovimientoT : MonoBehaviour
     public float direccioIndicadaY;
     public GameObject porta1;
     public GameObject cofre;
+    public GameObject salida;
     public bool textOperacion = false;
 
     //--------------------------------------------
@@ -110,6 +111,10 @@ public class MovimientoT : MonoBehaviour
                 SceneManager.LoadScene("cofre");
             }
             
+        }
+        if (objecteTocat.gameObject.tag == "salida")
+        {
+            SceneManager.LoadScene("casa");
         }
     }
     
