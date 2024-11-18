@@ -7,6 +7,10 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static UnityEditor.ShaderData;
 using TMPro;
+using UnityEngine.UI;
+using TMPro.Examples;
+
+
 
 public class MovimientoT : MonoBehaviour
 {
@@ -17,20 +21,27 @@ public class MovimientoT : MonoBehaviour
     public float direccioIndicadaX;
     public float direccioIndicadaY;
     public GameObject porta1;
-    public GameObject cofre;
+    //public GameObject cofre;
     public GameObject salida;
     public bool textOperacion = false;
 
     //--------------------------------------------
     public GameObject panelOperacion;
     public TextMeshPro operacionText;
-    private bool estaEnP1 = false; // Indica si el jugador está tocando P1
+    //public InputField respuestaInput;
+    public GameObject P1;
     private int numero1, numero2, resultadoCorrecto;
-    public TextMeshPro Respuesta;
+    //public TextMeshPro Respuesta;
+
+    [SerializeField] private Button BotonValidar; // Botón de confirmación
+    [SerializeField] private TMP_InputField Respuesta;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
+
         _vel = 8f;
         minPantalla = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
         maxPantalla = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
@@ -49,22 +60,23 @@ public class MovimientoT : MonoBehaviour
         {
             transform.position = VariablesGlobales.posTorrenteGuardada;
         }
+
+        BotonValidar.onClick.AddListener(VerificarRespuesta);
+
     }
 
     // Update is called once per frame
     void Update()
     {
+
         moverTorrente();
         colisionTorrente();
 
-        if (estaEnP1 && Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             GenerarOperacion();
         }
-        else if (!estaEnP1)
-        {
-            panelOperacion.SetActive(false);
-        }
+
     }
 
     //GENERAR OPERACION
@@ -99,8 +111,9 @@ public class MovimientoT : MonoBehaviour
                 break;
         }
 
-        // Muestra la operación en el texto y pausa el juego
-        operacionText.text = operacionTexto + " = ?";
+        // Muestra la operación en el texto y limpia el campo de respuesta
+        operacionText.text = operacionTexto + " = ";
+        Respuesta.text = ""; // Limpia el campo de entrada
         panelOperacion.SetActive(true);
     }
 
@@ -109,15 +122,25 @@ public class MovimientoT : MonoBehaviour
         int respuestaJugador;
         if (int.TryParse(Respuesta.text, out respuestaJugador))
         {
-            if (respuestaJugador != resultadoCorrecto)
+            if (respuestaJugador == resultadoCorrecto)
             {
-                GenerarOperacion();
+                Debug.Log("¡Respuesta correcta!");
+                panelOperacion.SetActive(false); 
             }
+            else
+            {
+                Debug.Log("Respuesta incorrecta. Intenta de nuevo.");
+                GenerarOperacion(); 
+            }
+        }
+        else
+        {
+            Debug.Log("Por favor, introduce un número válido.");
         }
     }
 
-        //MOVIMIENTO TORRENTE
-        public void moverTorrente()
+    //MOVIMIENTO TORRENTE
+    public void moverTorrente()
     {
         direccioIndicadaX = Input.GetAxisRaw("Horizontal");
         direccioIndicadaY = Input.GetAxisRaw("Vertical");
@@ -129,6 +152,8 @@ public class MovimientoT : MonoBehaviour
     {
         float inputHorizontal = Input.GetAxisRaw("Horizontal") * _vel;
         float inputVertical = Input.GetAxisRaw("Vertical") * _vel;
+
+        Debug.Log("hola");
 
         rigidbody.velocity = new Vector2(inputHorizontal, inputVertical);
     }
@@ -156,16 +181,7 @@ public class MovimientoT : MonoBehaviour
             SceneManager.LoadScene("casa");
         }
     }
-
-    private void OnCollisionExit2D(Collision2D objecteTocat)
-    {
-        if (objecteTocat.gameObject.tag == "Porta")
-        {
-            estaEnP1 = false; // El jugador ha salido de P1
-            panelOperacion.SetActive(false); // Asegúrate de que el panel se oculta al salir
-        }
-    }
-
+    
     //DESACTIVAR PUERTA
     public void DesactivarPorta1()
     {
