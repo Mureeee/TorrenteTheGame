@@ -1484,7 +1484,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 431406544}
   m_LocalRotation: {x: -0, y: 0.0068697426, z: -0, w: 0.99997646}
-  m_LocalPosition: {x: 0, y: 0, z: 4}
+  m_LocalPosition: {x: 0, y: 0, z: 6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1493,7 +1493,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0.787, z: 0}
   m_AnchorMin: {x: 0.55375004, y: 0.5}
   m_AnchorMax: {x: 0.55375004, y: 0.5}
-  m_AnchoredPosition: {x: -151, y: 460.5}
+  m_AnchoredPosition: {x: -169, y: 472}
   m_SizeDelta: {x: 168.7424, y: 40.489685}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &431406546
@@ -3794,8 +3794,8 @@ Transform:
   m_GameObject: {fileID: 759129010}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.2, y: -4.13, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
+  m_LocalPosition: {x: -4.0564, y: -4.2693, z: 0}
+  m_LocalScale: {x: 0.57954204, y: 0.57416004, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 818092655}
@@ -4148,7 +4148,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -36, y: 377}
+  m_AnchoredPosition: {x: -41, y: 378}
   m_SizeDelta: {x: 256.1552, y: 138.3932}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &836756724
@@ -6644,8 +6644,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -10.962708, y: 0}
+  m_SizeDelta: {x: -21.9254, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1817176372
 MonoBehaviour:
@@ -6694,8 +6694,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 100
-  m_fontSizeBase: 100
+  m_fontSize: 80
+  m_fontSizeBase: 80
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -7069,7 +7069,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 1.8610662
+  orthographic size: 2.6019127
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
