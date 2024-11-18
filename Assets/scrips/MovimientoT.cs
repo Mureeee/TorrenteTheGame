@@ -5,7 +5,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using static UnityEditor.ShaderData;
 using TMPro;
 
 public class MovimientoT : MonoBehaviour
@@ -28,6 +27,8 @@ public class MovimientoT : MonoBehaviour
     private int numero1, numero2, resultadoCorrecto;
     public TextMeshPro Respuesta;
 
+    private bool panelActivo = false; // Bandera para saber si el panel está activo
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,7 +46,7 @@ public class MovimientoT : MonoBehaviour
 
         panelOperacion.SetActive(false);
 
-        if(VariablesGlobales.escenaAnterior == "cofre")
+        if (VariablesGlobales.escenaAnterior == "cofre")
         {
             transform.position = VariablesGlobales.posTorrenteGuardada;
         }
@@ -57,13 +58,17 @@ public class MovimientoT : MonoBehaviour
         moverTorrente();
         colisionTorrente();
 
-        if (estaEnP1 && Input.GetKeyDown(KeyCode.E))
+        // Solo genera operación si está en P1, se presiona "E", y el panel no está activo
+        if (estaEnP1 && Input.GetKeyDown(KeyCode.E) && !panelActivo)
         {
+            Debug.Log("Generando operación...");
             GenerarOperacion();
         }
-        else if (!estaEnP1)
+
+        // Cierra el panel si el jugador sale de P1 y el panel está activo
+        if (!estaEnP1 && panelActivo)
         {
-            panelOperacion.SetActive(false);
+            CerrarPanelOperacion();
         }
     }
 
@@ -99,11 +104,13 @@ public class MovimientoT : MonoBehaviour
                 break;
         }
 
-        // Muestra la operación en el texto y pausa el juego
+        // Muestra la operación en el texto y activa el panel
         operacionText.text = operacionTexto + " = ?";
         panelOperacion.SetActive(true);
+        panelActivo = true; // Marca el panel como activo
     }
 
+    // Verifica la respuesta del jugador
     public void VerificarRespuesta()
     {
         int respuestaJugador;
@@ -111,13 +118,20 @@ public class MovimientoT : MonoBehaviour
         {
             if (respuestaJugador != resultadoCorrecto)
             {
-                GenerarOperacion();
+                GenerarOperacion(); // Genera una nueva operación si la respuesta es incorrecta
             }
         }
     }
 
-        //MOVIMIENTO TORRENTE
-        public void moverTorrente()
+    // Cierra el panel de operación
+    public void CerrarPanelOperacion()
+    {
+        panelOperacion.SetActive(false);
+        panelActivo = false; // Marca el panel como inactivo
+    }
+
+    //MOVIMIENTO TORRENTE
+    public void moverTorrente()
     {
         direccioIndicadaX = Input.GetAxisRaw("Horizontal");
         direccioIndicadaY = Input.GetAxisRaw("Vertical");
@@ -140,16 +154,16 @@ public class MovimientoT : MonoBehaviour
         {
             porta1.SetActive(true);
             Invoke("DesactivarPorta1", 2f);
-            
+
+            estaEnP1 = true; // El jugador está tocando P1
         }
         if (objecteTocat.gameObject.tag == "sala")
         {
             VariablesGlobales.posTorrenteGuardada = transform.position;
-            if(VariablesGlobales.escenaAnterior != "cofre")
+            if (VariablesGlobales.escenaAnterior != "cofre")
             {
                 SceneManager.LoadScene("cofre");
             }
-            
         }
         if (objecteTocat.gameObject.tag == "salida")
         {
@@ -161,8 +175,9 @@ public class MovimientoT : MonoBehaviour
     {
         if (objecteTocat.gameObject.tag == "Porta")
         {
+            Debug.Log("Saliendo de P1...");
+
             estaEnP1 = false; // El jugador ha salido de P1
-            panelOperacion.SetActive(false); // Asegúrate de que el panel se oculta al salir
         }
     }
 
