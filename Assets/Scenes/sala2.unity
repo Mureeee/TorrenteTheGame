@@ -3282,7 +3282,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &703010555
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3968,7 +3968,6 @@ MonoBehaviour:
   textOperacion: 0
   panelOperacion: {fileID: 818092654}
   operacionText: {fileID: 1529446393}
-  P1: {fileID: 703010554}
 --- !u!50 &759129014
 Rigidbody2D:
   serializedVersion: 4
