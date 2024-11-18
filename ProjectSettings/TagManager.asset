@@ -9,6 +9,7 @@ TagManager:
   - sala
   - calucla
   - salida
+  - llave
   layers:
   - Default
   - TransparentFX
