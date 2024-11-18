@@ -824,7 +824,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 186131406}
   m_TextViewport: {fileID: 316316528}
   m_TextComponent: {fileID: 611022815}
-  m_Placeholder: {fileID: 697619667}
+  m_Placeholder: {fileID: 0}
   m_VerticalScrollbar: {fileID: 0}
   m_VerticalScrollbarEventHandler: {fileID: 0}
   m_LayoutGroup: {fileID: 0}
@@ -1305,7 +1305,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 697619670}
   - {fileID: 611022817}
   m_Father: {fileID: 186131408}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3939,7 +3938,7 @@ Transform:
   m_GameObject: {fileID: 759129010}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.2, y: -4.27, z: 0}
+  m_LocalPosition: {x: -4.2, y: -4.13, z: 0}
   m_LocalScale: {x: 0.723065, y: 0.73233604, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3965,6 +3964,7 @@ MonoBehaviour:
   direccioIndicadaY: 0
   porta1: {fileID: 60130737}
   cofre: {fileID: 0}
+  salida: {fileID: 0}
   textOperacion: 0
   panelOperacion: {fileID: 818092654}
   operacionText: {fileID: 1529446393}
@@ -6047,7 +6047,7 @@ GameObject:
   - component: {fileID: 1527246699}
   m_Layer: 0
   m_Name: Salida
-  m_TagString: Untagged
+  m_TagString: salida
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6148,7 +6148,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.00000047683716, y: 0}

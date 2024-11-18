@@ -18,6 +18,7 @@ public class MovimientoT : MonoBehaviour
     public float direccioIndicadaY;
     public GameObject porta1;
     public GameObject cofre;
+    public GameObject salida;
     public bool textOperacion = false;
 
     //--------------------------------------------
@@ -26,6 +27,7 @@ public class MovimientoT : MonoBehaviour
     //public InputField respuestaInput;
     public GameObject P1;
     private int numero1, numero2, resultadoCorrecto;
+    public TextMeshPro Respuesta;
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +45,11 @@ public class MovimientoT : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
 
         panelOperacion.SetActive(false);
+
+        if(VariablesGlobales.escenaAnterior == "cofre")
+        {
+            transform.position = VariablesGlobales.posTorrenteGuardada;
+        }
     }
 
     // Update is called once per frame
@@ -62,18 +69,54 @@ public class MovimientoT : MonoBehaviour
     //GENERAR OPERACION
     public void GenerarOperacion()
     {
-        // Generar dos n�meros aleatorios
-        numero1 = Random.Range(1, 10);
-        numero2 = Random.Range(1, 10);
-        resultadoCorrecto = numero1 + numero2; // Puedes cambiar esto para otros operadores
+        int num1 = Random.Range(1, 10);
+        int num2 = Random.Range(1, 10);
+        int operador = Random.Range(0, 4); // 0: suma, 1: resta, 2: multiplicación, 3: división
+        string operacionTexto = "";
 
-        // Mostrar la operaci�n
-        operacionText.text = $"{numero1} + {numero2} = ?";
-        panelOperacion.SetActive(true); // Muestra el panel
+        switch (operador)
+        {
+            case 0: // Suma
+                resultadoCorrecto = num1 + num2;
+                operacionTexto = num1 + " + " + num2;
+                break;
+
+            case 1: // Resta
+                resultadoCorrecto = num1 - num2;
+                operacionTexto = num1 + " - " + num2;
+                break;
+
+            case 2: // Multiplicación
+                resultadoCorrecto = num1 * num2;
+                operacionTexto = num1 + " * " + num2;
+                break;
+
+            case 3: // División (asegura que el resultado sea entero)
+                num1 = num1 * num2; // Así el primer número será divisible por el segundo
+                resultadoCorrecto = num1 / num2;
+                operacionTexto = num1 + " / " + num2;
+                break;
+        }
+
+        // Muestra la operación en el texto y pausa el juego
+        operacionText.text = operacionTexto + " = ?";
+        panelOperacion.SetActive(true);
     }
 
-    //MOVIMIENTO TORRENTE
-    public void moverTorrente()
+    public void VerificarRespuesta()
+    {
+        int respuestaJugador;
+        if (int.TryParse(Respuesta.text, out respuestaJugador))
+        {
+            if (respuestaJugador != resultadoCorrecto)
+            {
+                GenerarOperacion();
+            }
+        }
+    }
+
+        //MOVIMIENTO TORRENTE
+        public void moverTorrente()
     {
         direccioIndicadaX = Input.GetAxisRaw("Horizontal");
         direccioIndicadaY = Input.GetAxisRaw("Vertical");
@@ -96,10 +139,20 @@ public class MovimientoT : MonoBehaviour
         {
             porta1.SetActive(true);
             Invoke("DesactivarPorta1", 2f);
+            
         }
         if (objecteTocat.gameObject.tag == "sala")
         {
-            SceneManager.LoadScene("cofre");
+            VariablesGlobales.posTorrenteGuardada = transform.position;
+            if(VariablesGlobales.escenaAnterior != "cofre")
+            {
+                SceneManager.LoadScene("cofre");
+            }
+            
+        }
+        if (objecteTocat.gameObject.tag == "salida")
+        {
+            SceneManager.LoadScene("casa");
         }
     }
     

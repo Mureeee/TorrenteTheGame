@@ -7,6 +7,8 @@ TagManager:
   - Porta
   - cofre
   - sala
+  - calucla
+  - salida
   layers:
   - Default
   - TransparentFX
