@@ -24,8 +24,7 @@ public class MovimientoT : MonoBehaviour
     //--------------------------------------------
     public GameObject panelOperacion;
     public TextMeshPro operacionText;
-    //public InputField respuestaInput;
-    public GameObject P1;
+    private bool estaEnP1 = false; // Indica si el jugador está tocando P1
     private int numero1, numero2, resultadoCorrecto;
     public TextMeshPro Respuesta;
 
@@ -55,15 +54,17 @@ public class MovimientoT : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         moverTorrente();
         colisionTorrente();
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (estaEnP1 && Input.GetKeyDown(KeyCode.E))
         {
             GenerarOperacion();
         }
-
+        else if (!estaEnP1)
+        {
+            panelOperacion.SetActive(false);
+        }
     }
 
     //GENERAR OPERACION
@@ -155,7 +156,16 @@ public class MovimientoT : MonoBehaviour
             SceneManager.LoadScene("casa");
         }
     }
-    
+
+    private void OnCollisionExit2D(Collision2D objecteTocat)
+    {
+        if (objecteTocat.gameObject.tag == "Porta")
+        {
+            estaEnP1 = false; // El jugador ha salido de P1
+            panelOperacion.SetActive(false); // Asegúrate de que el panel se oculta al salir
+        }
+    }
+
     //DESACTIVAR PUERTA
     public void DesactivarPorta1()
     {
