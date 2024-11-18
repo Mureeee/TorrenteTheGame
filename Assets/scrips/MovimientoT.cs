@@ -6,6 +6,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.UI;
+using TMPro.Examples;
+
+
 
 public class MovimientoT : MonoBehaviour
 {
@@ -16,31 +20,39 @@ public class MovimientoT : MonoBehaviour
     public float direccioIndicadaX;
     public float direccioIndicadaY;
     public GameObject porta1;
-    public GameObject cofre;
+    //public GameObject cofre;
     public GameObject salida;
     public bool textOperacion = false;
+    private bool estaEnP1 = false;
 
     //--------------------------------------------
     public GameObject panelOperacion;
     public TextMeshPro operacionText;
-    private bool estaEnP1 = false; // Indica si el jugador está tocando P1
+    //public InputField respuestaInput;
+    public GameObject P1;
     private int numero1, numero2, resultadoCorrecto;
-    public TextMeshPro Respuesta;
+    //public TextMeshPro Respuesta;
 
     private bool panelActivo = false; // Bandera para saber si el panel está activo
+
+    [SerializeField] private Button BotonValidar; // Botón de confirmación
+    [SerializeField] private TMP_InputField Respuesta;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
+
         _vel = 8f;
-        minPantalla = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
-        maxPantalla = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
+        //minPantalla = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
+        //maxPantalla = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
 
-        float meitatMidaImatgeX = GetComponent<SpriteRenderer>().sprite.bounds.size.x * transform.localScale.x / 2;
-        float meitatMidaImatgeY = GetComponent<SpriteRenderer>().sprite.bounds.size.y * transform.localScale.y / 2;
+        //float meitatMidaImatgeX = GetComponent<SpriteRenderer>().sprite.bounds.size.x * transform.localScale.x / 2;
+        //float meitatMidaImatgeY = GetComponent<SpriteRenderer>().sprite.bounds.size.y * transform.localScale.y / 2;
 
-        minPantalla.x = minPantalla.x + meitatMidaImatgeX;
-        maxPantalla.x = maxPantalla.x - meitatMidaImatgeX;
+        //minPantalla.x = minPantalla.x + meitatMidaImatgeX;
+        //maxPantalla.x = maxPantalla.x - meitatMidaImatgeX;
 
         rigidbody = GetComponent<Rigidbody2D>();
 
@@ -50,11 +62,15 @@ public class MovimientoT : MonoBehaviour
         {
             transform.position = VariablesGlobales.posTorrenteGuardada;
         }
+
+        //BotonValidar.onClick.AddListener(VerificarRespuesta);
+
     }
 
     // Update is called once per frame
     void Update()
     {
+
         moverTorrente();
         colisionTorrente();
 
@@ -104,8 +120,9 @@ public class MovimientoT : MonoBehaviour
                 break;
         }
 
-        // Muestra la operación en el texto y activa el panel
-        operacionText.text = operacionTexto + " = ?";
+        // Muestra la operación en el texto y limpia el campo de respuesta
+        operacionText.text = operacionTexto + " = ";
+        Respuesta.text = ""; // Limpia el campo de entrada
         panelOperacion.SetActive(true);
         panelActivo = true; // Marca el panel como activo
     }
@@ -116,10 +133,20 @@ public class MovimientoT : MonoBehaviour
         int respuestaJugador;
         if (int.TryParse(Respuesta.text, out respuestaJugador))
         {
-            if (respuestaJugador != resultadoCorrecto)
+            if (respuestaJugador == resultadoCorrecto)
             {
-                GenerarOperacion(); // Genera una nueva operación si la respuesta es incorrecta
+                Debug.Log("¡Respuesta correcta!");
+                panelOperacion.SetActive(false); 
             }
+            else
+            {
+                Debug.Log("Respuesta incorrecta. Intenta de nuevo.");
+                GenerarOperacion(); 
+            }
+        }
+        else
+        {
+            Debug.Log("Por favor, introduce un número válido.");
         }
     }
 
@@ -143,6 +170,8 @@ public class MovimientoT : MonoBehaviour
     {
         float inputHorizontal = Input.GetAxisRaw("Horizontal") * _vel;
         float inputVertical = Input.GetAxisRaw("Vertical") * _vel;
+
+        Debug.Log("hola");
 
         rigidbody.velocity = new Vector2(inputHorizontal, inputVertical);
     }
