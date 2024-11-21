@@ -10,7 +10,7 @@ public class Movilidad2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _vel = 8f;
+        _vel = 5f;
 
         rigidbody = GetComponent<Rigidbody2D>();
         rigidbody.gravityScale = 0;
