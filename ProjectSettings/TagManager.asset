@@ -10,6 +10,7 @@ TagManager:
   - calucla
   - salida
   - llave
+  - cofreAbierto
   layers:
   - Default
   - TransparentFX
