@@ -23,6 +23,7 @@
         private bool estaEnP4 = false;
         public GameObject paredMid;
         public GameObject puertaCof;
+        public GameObject pared;
         public GameObject textPortaCasa;
         public int vidasT;
 
@@ -188,6 +189,23 @@
                 textPortaCasa.SetActive(true);
                 Invoke("interactuar2", 2f);
             }
+        if (objecteTocat.gameObject.tag == "sala")
+        {
+            VariablesGlobales.posTorrenteGuardada = transform.position;
+            if (VariablesGlobales.escenaAnterior != "cofre")
+            {
+                SceneManager.LoadScene("cofre");
+            }
+        if (VariablesGlobales.escenaAnterior == "cofre")
+        {
+            paredMid.SetActive(false);
+            pared.SetActive(false); 
+        }
+        }
+        if (objecteTocat.gameObject.tag == "salida")
+        {
+            SceneManager.LoadScene("casa");
+        }
     }
 
         private void OnCollisionExit2D(Collision2D objecteTocat)
@@ -208,7 +226,8 @@
             {
                 estaEnP4 = false;
             }
-        }
+        
+    }
 
         //DESACTIVAR PUERTA
         public void DesactivarPorta1()
