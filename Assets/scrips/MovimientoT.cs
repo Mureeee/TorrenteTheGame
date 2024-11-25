@@ -24,12 +24,14 @@ public class MovimientoT : MonoBehaviour
     public GameObject salida;
     public bool textOperacion = false;
     private bool estaEnP1 = false;
+    private bool estaEnP2 = false;
 
     //--------------------------------------------
     public GameObject panelOperacion;
     public TextMeshPro operacionText;
     //public InputField respuestaInput;
     public GameObject P1;
+    public GameObject P2;
     private int numero1, numero2, resultadoCorrecto;
     //public TextMeshPro Respuesta;
 
@@ -77,12 +79,24 @@ public class MovimientoT : MonoBehaviour
         // Solo genera operación si está en P1, se presiona "E", y el panel no está activo
         if (estaEnP1 && Input.GetKeyDown(KeyCode.E) && !panelActivo)
         {
-            Debug.Log("Generando operación...");
+            Debug.Log("Generando operación1...");
             GenerarOperacion();
         }
 
         // Cierra el panel si el jugador sale de P1 y el panel está activo
         if (!estaEnP1 && panelActivo)
+        {
+            CerrarPanelOperacion();
+        }
+
+        if (estaEnP2 && Input.GetKeyDown(KeyCode.E) && !panelActivo)
+        {
+            Debug.Log("Generando operación2...");
+            GenerarOperacion();
+        }
+
+        // Cierra el panel si el jugador sale de P2 y el panel está activo
+        if (!estaEnP2 && panelActivo)
         {
             CerrarPanelOperacion();
         }
@@ -135,13 +149,20 @@ public class MovimientoT : MonoBehaviour
         {
             if (respuestaJugador == resultadoCorrecto)
             {
-                Debug.Log("¡Respuesta correcta!");
-                panelOperacion.SetActive(false); 
+                Debug.Log("¡Respuesta correcta de la puerta 1!");
+                panelOperacion.SetActive(false);
+                if (estaEnP1)
+                {
+                    P1.SetActive(false);
+                }else if (estaEnP2)
+                {
+                    P2.SetActive(false);
+                }
             }
             else
             {
                 Debug.Log("Respuesta incorrecta. Intenta de nuevo.");
-                GenerarOperacion(); 
+                GenerarOperacion();
             }
         }
         else
@@ -171,7 +192,7 @@ public class MovimientoT : MonoBehaviour
         float inputHorizontal = Input.GetAxisRaw("Horizontal") * _vel;
         float inputVertical = Input.GetAxisRaw("Vertical") * _vel;
 
-        Debug.Log("hola");
+        
 
         rigidbody.velocity = new Vector2(inputHorizontal, inputVertical);
     }
@@ -185,6 +206,13 @@ public class MovimientoT : MonoBehaviour
             Invoke("DesactivarPorta1", 2f);
 
             estaEnP1 = true; // El jugador está tocando P1
+        }
+        if (objecteTocat.gameObject.tag == "Porta2")
+        {
+            porta1.SetActive(true);
+            Invoke("DesactivarPorta1", 2f);
+
+            estaEnP2 = true; // El jugador está tocando P2
         }
         if (objecteTocat.gameObject.tag == "sala")
         {
@@ -207,6 +235,12 @@ public class MovimientoT : MonoBehaviour
             Debug.Log("Saliendo de P1...");
 
             estaEnP1 = false; // El jugador ha salido de P1
+        }
+        if (objecteTocat.gameObject.tag == "Porta2")
+        {
+            Debug.Log("Saliendo de P2...");
+
+            estaEnP2 = false; // El jugador ha salido de P2
         }
     }
 
