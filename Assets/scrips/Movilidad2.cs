@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class Movilidad2 : MonoBehaviour
 {
@@ -31,4 +33,20 @@ public class Movilidad2 : MonoBehaviour
 
         GetComponent<Rigidbody2D>().velocity = new Vector2(inputHorizontal, inputVertical);
     }
+
+
+
+    private void OnCollisionExit2D(Collision2D objecteTocat)
+    {
+        if (objecteTocat.gameObject.CompareTag("puerta1")) // CompareTag es más eficiente
+        {
+            SceneManager.LoadScene("fuera");
+        }
+
+    }
 }
+
+
+
+
+

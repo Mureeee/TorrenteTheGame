@@ -134,8 +134,8 @@ GameObject:
   - component: {fileID: 42327468}
   - component: {fileID: 42327469}
   m_Layer: 0
-  m_Name: puert1
-  m_TagString: Untagged
+  m_Name: puerta1
+  m_TagString: puerta1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2848,7 +2848,7 @@ GameObject:
   - component: {fileID: 1719923526}
   - component: {fileID: 1719923527}
   m_Layer: 0
-  m_Name: puert2
+  m_Name: puerta2
   m_TagString: Porta
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

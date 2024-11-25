@@ -26,4 +26,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/casa.unity
     guid: ef409985ac2f7014c9f6440ef28f3c28
+  - enabled: 1
+    path: Assets/Scenes/ControlesEnCasa.unity
+    guid: 12a9bd64c864b9846ab936e26affedf5
+  - enabled: 1
+    path: Assets/Scenes/fuera.unity
+    guid: a76a1d5a55fb2ed4599de282ba79ca82
   m_configObjects: {}
