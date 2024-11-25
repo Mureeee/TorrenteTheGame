@@ -15,6 +15,9 @@ TagManager:
   - pista
   - verde
   - correcto
+  - Porta2
+  - Porta3
+  - Porta4
   layers:
   - Default
   - TransparentFX
