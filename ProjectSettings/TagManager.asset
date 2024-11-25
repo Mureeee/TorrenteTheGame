@@ -11,6 +11,9 @@ TagManager:
   - salida
   - llave
   - cofreAbierto
+  - Porta2
+  - Porta3
+  - Porta4
   layers:
   - Default
   - TransparentFX
