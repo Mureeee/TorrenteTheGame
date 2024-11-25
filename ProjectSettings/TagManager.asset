@@ -11,6 +11,10 @@ TagManager:
   - salida
   - llave
   - cofreAbierto
+  - misterio
+  - pista
+  - verde
+  - correcto
   layers:
   - Default
   - TransparentFX
