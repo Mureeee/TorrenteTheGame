@@ -11,6 +11,10 @@ TagManager:
   - salida
   - llave
   - cofreAbierto
+  - misterio
+  - pista
+  - verde
+  - correcto
   - Porta2
   - Porta3
   - Porta4
