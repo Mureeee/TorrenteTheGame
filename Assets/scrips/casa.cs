@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class casa : MonoBehaviour
 {
@@ -12,6 +14,7 @@ public class casa : MonoBehaviour
     public GameObject textCorrecto;
     public GameObject llave;
     public GameObject armario;
+    public GameObject puertacasa;
 
     private bool puedeInteractuarMisterio = false;
     private bool puedeInteractuarPista = false;
@@ -19,36 +22,49 @@ public class casa : MonoBehaviour
     private bool puedeInteractuarCorrecto = false;
     private bool puedeInteractuarArmario = false;
     private bool interactuoConArmario = false;
+    private bool llaveEncontrada = false;
+    private bool puedeRecogerLlave = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        //OCULTARLOS AL INICIO
+        // Ocultar elementos al inicio
         textPorta.SetActive(false);
         textNada.SetActive(false);
         textPista.SetActive(false);
         textVerde.SetActive(false);
         textCorrecto.SetActive(false);
         llave.SetActive(false);
+        puertacasa.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (puedeInteractuarMisterio && Input.GetKeyDown(KeyCode.E))
+        if (puedeRecogerLlave && Input.GetKeyDown(KeyCode.E))
+        {
+            // Recoger la llave
+            llave.SetActive(false);
+            puedeRecogerLlave = false;
+            llaveEncontrada = true;
+            textPorta.SetActive(false);
+            activarpuerta();
+        }
+
+        if (puedeInteractuarMisterio && Input.GetKeyDown(KeyCode.E) && !llaveEncontrada)
         {
             textPorta.SetActive(false);
             textNada.SetActive(true);
             Invoke("noHayNada", 1f);
         }
 
-        if (puedeInteractuarPista && Input.GetKeyDown(KeyCode.E))
+        if (puedeInteractuarPista && Input.GetKeyDown(KeyCode.E) && !llaveEncontrada)
         {
             textPista.SetActive(true);
             Invoke("OcultarTextPista", 2f);
         }
 
-        if (puedeInteractuarArmario && Input.GetKeyDown(KeyCode.E))
+        if (puedeInteractuarArmario && Input.GetKeyDown(KeyCode.E) && !llaveEncontrada)
         {
             interactuoConArmario = true;
             textPorta.SetActive(false);
@@ -56,7 +72,7 @@ public class casa : MonoBehaviour
             Invoke("noHayNada", 1f);
         }
 
-        if (puedeInteractuarVerde && Input.GetKeyDown(KeyCode.E))
+        if (puedeInteractuarVerde && Input.GetKeyDown(KeyCode.E) && !llaveEncontrada)
         {
             if (interactuoConArmario)
             {
@@ -70,55 +86,83 @@ public class casa : MonoBehaviour
             }
         }
 
-        if (puedeInteractuarCorrecto && Input.GetKeyDown(KeyCode.E))
+        if (puedeInteractuarCorrecto && Input.GetKeyDown(KeyCode.E) && !llaveEncontrada)
         {
             textPorta.SetActive(false);
             textCorrecto.SetActive(true);
             llave.SetActive(true);
             Invoke("OcultarTextCorrecto", 3f);
         }
+
+        if (puedeRecogerLlave && Input.GetKeyDown(KeyCode.E))
+        {
+            llave.SetActive(false);
+            textPorta.SetActive(false);
+        }
     }
+    public void activarpuerta()
+    {
+        if (puertacasa != null)
+        {
+            puertacasa.SetActive(true); 
+        }
+    }
+
     public void OnCollisionEnter2D(Collision2D objecteTocat)
     {
-        //TAG MISTERIO
+        if (llaveEncontrada) return; // Desactiva interacciones si la llave fue encontrada
+
+        // TAG MISTERIO
         if (objecteTocat.gameObject.tag == "misterio")
         {
             textPorta.SetActive(true);
             puedeInteractuarMisterio = true;
         }
 
-        //TAG PISTA
+        // TAG PISTA
         if (objecteTocat.gameObject.tag == "pista")
         {
             textPorta.SetActive(true);
             puedeInteractuarPista = true;
         }
 
-        //TAG VERDE
+        // TAG VERDE
         if (objecteTocat.gameObject.tag == "verde")
         {
             textPorta.SetActive(true);
             puedeInteractuarVerde = true;
         }
 
-        //TAG CORRECTO
+        // TAG CORRECTO
         if (objecteTocat.gameObject.tag == "correcto")
         {
             textPorta.SetActive(true);
             puedeInteractuarCorrecto = true;
         }
 
-        //OBJETO ARMARIO
+        // OBJETO ARMARIO
         if (objecteTocat.gameObject == armario)
         {
             textPorta.SetActive(true);
-            puedeInteractuarCorrecto = true;
+            puedeInteractuarArmario = true;
         }
-     }
+
+        // OBJETO LLAVE
+        if (objecteTocat.gameObject.tag == "llave")
+        {
+            Debug.Log("En contacto con la llave");
+            textPorta.SetActive(true);
+            puedeRecogerLlave = true;
+        }
+
+        if (objecteTocat.gameObject == puertacasa && llaveEncontrada)
+        {
+            SceneManager.LoadScene("fuera");
+        }
+    }
 
     public void OnCollisionExit2D(Collision2D objecteTocat)
     {
-        // Cuando el personaje se aleja del objeto "misterio"
         if (objecteTocat.gameObject.tag == "misterio")
         {
             textPorta.SetActive(false);
@@ -149,15 +193,18 @@ public class casa : MonoBehaviour
             puedeInteractuarArmario = false;
         }
 
+        if (objecteTocat.gameObject.tag == "llave")
+        {
+            textPorta.SetActive(false);
+            puedeRecogerLlave = false;
+        }
     }
 
-    //MOSTRAR TEXTO INTERACTUAR
     public void interactuar()
     {
         textPorta.SetActive(false);
     }
 
-    //MOSTRAR TEXTO NADA
     public void noHayNada()
     {
         textNada.SetActive(false);
@@ -167,10 +214,12 @@ public class casa : MonoBehaviour
     {
         textPista.SetActive(false);
     }
+
     public void OcultarTextVerde()
     {
         textVerde.SetActive(false);
     }
+
     public void OcultarTextCorrecto()
     {
         textCorrecto.SetActive(false);
