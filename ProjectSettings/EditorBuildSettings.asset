@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/fuera.unity
     guid: a76a1d5a55fb2ed4599de282ba79ca82
+  - enabled: 1
+    path: Assets/Scenes/garaje.unity
+    guid: 1e1e292cf71536f4a980caadfcbeede0
   m_configObjects: {}
