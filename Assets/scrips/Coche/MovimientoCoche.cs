@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MovimientoCoche : MonoBehaviour
 {
-    public float velocidadAdelante = 10f; // Velocidad del movimiento hacia adelante y atrás
-    public float velocidadLateral = 10f; // Velocidad del movimiento lateral
+    public float velocidadAdelante = 15f; // Velocidad del movimiento hacia adelante y atrás
+    public float velocidadLateral = 15f; // Velocidad del movimiento lateral
 
     public GameObject panelGameOver; // Panel que aparece al perder
     private bool esInvencible = false; // Si el jugador es invencible temporalmente
