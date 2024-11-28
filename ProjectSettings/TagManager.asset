@@ -22,6 +22,7 @@ TagManager:
   - casa
   - texto
   - garaje
+  - final
   layers:
   - Default
   - TransparentFX
