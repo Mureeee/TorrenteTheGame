@@ -19,6 +19,9 @@ TagManager:
   - Porta3
   - Porta4
   - puerta1
+  - casa
+  - texto
+  - garaje
   layers:
   - Default
   - TransparentFX

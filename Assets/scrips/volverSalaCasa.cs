@@ -5,12 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class volverSalaCasa : MonoBehaviour
 {
-    private void OnCollisionEnter2D(Collision2D objecteTocat)
+    public GameObject textPorta;
+    public void OnCollisionEnter2D(Collision2D objecteTocat)
     {
-        Debug.Log("Colisión detectada con: " + objecteTocat.gameObject.name);
-        if (objecteTocat.gameObject.tag == "sala")
+        if (objecteTocat.gameObject.tag == "casa")
         {
             SceneManager.LoadScene("casa");
         }
-    }   
+        if (objecteTocat.gameObject.tag == "texto")
+        {
+            textPorta.SetActive(true);
+            Invoke("mostrarTexto", 2f);
+        }
+    }  
+
+    public void mostrarTexto()
+    {
+        textPorta.SetActive(false);
+    }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class irSalaCoche : MonoBehaviour
+public class irGaraje : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -15,5 +15,12 @@ public class irSalaCoche : MonoBehaviour
     void Update()
     {
         
+    }
+    public void OnCollisionEnter2D(Collision2D objecteTocat)
+    {
+        if (objecteTocat.gameObject.tag == "garaje")
+        {
+            SceneManager.LoadScene("garaje");
+        }
     }
 }
