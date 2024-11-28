@@ -15,6 +15,7 @@ public class casa : MonoBehaviour
     public GameObject llave;
     public GameObject armario;
     public GameObject puertacasa;
+    public GameObject volver;
 
     private bool puedeInteractuarMisterio = false;
     private bool puedeInteractuarPista = false;
@@ -99,6 +100,7 @@ public class casa : MonoBehaviour
             llave.SetActive(false);
             textPorta.SetActive(false);
         }
+
     }
     public void activarpuerta()
     {
@@ -158,6 +160,11 @@ public class casa : MonoBehaviour
         if (objecteTocat.gameObject == puertacasa && llaveEncontrada)
         {
             SceneManager.LoadScene("fuera");
+        }
+
+        if (objecteTocat.gameObject.tag == "sala")
+        {
+            SceneManager.LoadScene("sala2");
         }
     }
 

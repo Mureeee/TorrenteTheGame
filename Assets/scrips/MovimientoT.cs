@@ -52,7 +52,11 @@
             {
                 transform.position = VariablesGlobales.posTorrenteGuardada;
             }
-            vidasT = 3;
+        if (VariablesGlobales.escenaAnterior == "casa")
+        {
+            transform.position = VariablesGlobales.posTorrenteGuardada;
+        }
+        vidasT = 3;
         }
 
         // Update is called once per frame
@@ -202,10 +206,15 @@
             pared.SetActive(false); 
         }
         }
-        if (objecteTocat.gameObject.tag == "salida")
+        if(objecteTocat.gameObject.tag == "salida")
         {
-            SceneManager.LoadScene("casa");
+            VariablesGlobales.posTorrenteGuardada = transform.position;
+            if (objecteTocat.gameObject.tag == "salida")
+            {
+                SceneManager.LoadScene("casa");
+            }
         }
+        
     }
 
         private void OnCollisionExit2D(Collision2D objecteTocat)
