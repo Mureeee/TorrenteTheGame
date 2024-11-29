@@ -279,8 +279,8 @@ Transform:
   m_GameObject: {fileID: 193220730}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.4355, y: -2.7228, z: 10}
-  m_LocalScale: {x: 1.2599089, y: 1.7145475, z: 1}
+  m_LocalPosition: {x: 6.4355, y: -2.6068, z: 10}
+  m_LocalScale: {x: 1.2599089, y: 1.4824364, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 899243359}
@@ -1719,7 +1719,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: busca el garaje
+  m_text: ve a la otra puerta abierta
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2309,9 +2309,10 @@ GameObject:
   - component: {fileID: 839623100}
   - component: {fileID: 839623099}
   - component: {fileID: 839623101}
+  - component: {fileID: 839623102}
   m_Layer: 0
-  m_Name: irGaraje
-  m_TagString: garaje
+  m_Name: final
+  m_TagString: final
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2438,6 +2439,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 516ba556ca9cb6a49836094d498338b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &839623102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839623096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81f9691be635fa3468793a8d11f9fa73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &863206944
@@ -2677,9 +2690,9 @@ Transform:
   - {fileID: 1022960660}
   - {fileID: 191586554}
   - {fileID: 1784009326}
-  - {fileID: 667106666}
   - {fileID: 650195937}
   - {fileID: 839623097}
+  - {fileID: 1188873950}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &958063591
@@ -4011,7 +4024,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1689618393}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 516ba556ca9cb6a49836094d498338b4, type: 3}
+  m_Script: {fileID: 11500000, guid: 81f9691be635fa3468793a8d11f9fa73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1695869917

@@ -112,7 +112,19 @@ public class casa : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D objecteTocat)
     {
-        if (llaveEncontrada) return; // Desactiva interacciones si la llave fue encontrada
+        // Cambiar escena inmediatamente si la llave fue encontrada y se toca la puerta
+        if (objecteTocat.gameObject == puertacasa)
+        {
+            if (llaveEncontrada)
+            {
+                SceneManager.LoadScene("fuera");
+                return; // Salimos de la función para evitar más verificaciones
+            }
+            else
+            {
+                Debug.Log("Necesitas la llave para abrir esta puerta.");
+            }
+        }
 
         // TAG MISTERIO
         if (objecteTocat.gameObject.tag == "misterio")
@@ -157,11 +169,7 @@ public class casa : MonoBehaviour
             puedeRecogerLlave = true;
         }
 
-        if (objecteTocat.gameObject == puertacasa && llaveEncontrada)
-        {
-            SceneManager.LoadScene("fuera");
-        }
-
+        // SALA
         if (objecteTocat.gameObject.tag == "sala")
         {
             SceneManager.LoadScene("sala2");

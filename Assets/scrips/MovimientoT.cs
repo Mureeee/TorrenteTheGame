@@ -211,6 +211,7 @@
             VariablesGlobales.posTorrenteGuardada = transform.position;
             if (objecteTocat.gameObject.tag == "salida")
             {
+                Destroy(objecteTocat.gameObject);
                 SceneManager.LoadScene("casa");
             }
         }
