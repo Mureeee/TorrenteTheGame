@@ -6,6 +6,7 @@ public class CodigoPausa : MonoBehaviour
 {
     public GameObject ObjetoMenuPausa;
     public bool Pausa = false;
+    public GameObject torrente;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,13 +18,13 @@ public class CodigoPausa : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-
+            
             if (!Pausa)
-            {
-                
+            { 
                 ObjetoMenuPausa.SetActive(true);
                 Pausa = true;
-                
+               // torrente.SetActive(false);
+
             }
             else
             {

@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ButtonControles3 : MonoBehaviour
+public class ButtonControles4 : MonoBehaviour
 {
     // Start is called before the first frame update
-    public void anaraControls3()
+    public void anaraControls4()
     {
-        SceneManager.LoadScene("controlesfuera");
+        SceneManager.LoadScene("ControlesFuera");
     }
 }
+
