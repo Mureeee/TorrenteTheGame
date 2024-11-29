@@ -14,4 +14,8 @@ public class ButtonControles2 : MonoBehaviour
     {
         SceneManager.LoadScene("ControlesEnCasa");
     }
+    public void anaraControls4()
+    {
+        SceneManager.LoadScene("controles4");
+    }
 }

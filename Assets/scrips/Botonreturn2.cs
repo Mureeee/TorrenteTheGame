@@ -10,5 +10,9 @@ public class BotonReturn2 : MonoBehaviour
     {
         SceneManager.LoadScene("casa");
     }
+    public void pantallaReturn3()
+    {
+        SceneManager.LoadScene("cofre");
+    }
 }
 
