@@ -21,6 +21,10 @@ public class ButtonControles2 : MonoBehaviour
         VariablesGlobales.posTorrenteGuardada = transform.position;
         SceneManager.LoadScene("ControlesFuera");
     }
+    public void anaraControls5()
+    {
+        SceneManager.LoadScene("ControlesCofre");
+    }
     public void VolverAlJuego()
     {
         // Cambia de vuelta a la escena principal

@@ -20,7 +20,7 @@ public class Coin_Spawner : MonoBehaviour
     void Update()
     {
         float randomX = Random.Range(minX, maxX);
-        Vector3 spawnPosition = new Vector3(randomX, spawnY, 0);
+        Vector3 spawnPosition = new Vector3(randomX, spawnY, 10);
         Instantiate(coinPrefab, spawnPosition, Quaternion.identity);
     }
 }
