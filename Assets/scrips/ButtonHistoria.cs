@@ -8,6 +8,6 @@ public class ButtonHistoria : MonoBehaviour
 {
     public void nuevaPartida1()
     {
-        SceneManager.LoadScene("Historia");
+        SceneManager.LoadScene("Carga");
     }
 }

@@ -8,6 +8,6 @@ public class ButtonControles3 : MonoBehaviour
     // Start is called before the first frame update
     public void anaraControls3()
     {
-        SceneManager.LoadScene("controlesfuera");
+        SceneManager.LoadScene("ControlesEnCasa");
     }
 }
