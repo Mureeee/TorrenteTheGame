@@ -50,4 +50,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/controles4.unity
     guid: cd9f010b42f1e24449ea323ba460d629
+  - enabled: 1
+    path: Assets/Scenes/Muerte.unity
+    guid: c6a86f8565be6ce4ea4cf73d1cfdb40c
   m_configObjects: {}

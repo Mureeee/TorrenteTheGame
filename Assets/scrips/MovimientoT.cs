@@ -133,7 +133,7 @@
                 componentTextVides.text = "Vides: " + vidasT.ToString();
                 if (vidasT <= 0)
                 {
-                    SalirDelJuego();
+                    SceneManager.LoadScene("Muerte");
                 }
             }
         }

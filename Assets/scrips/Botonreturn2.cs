@@ -14,5 +14,19 @@ public class BotonReturn2 : MonoBehaviour
     {
         SceneManager.LoadScene("cofre");
     }
+
+    public void volveraljuego()
+    {
+        SceneManager.LoadScene("sala2");
+    }
+
+    public void salir()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
 }
 
