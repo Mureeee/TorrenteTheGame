@@ -16,6 +16,7 @@ public class casa : MonoBehaviour
     public GameObject armario;
     public GameObject puertacasa;
     public GameObject volver;
+    public GameObject TextoInicio;
 
     private bool puedeInteractuarMisterio = false;
     private bool puedeInteractuarPista = false;
@@ -29,6 +30,8 @@ public class casa : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        TextoInicio.SetActive(true);
+        Invoke("quitexin", 5f);
         // Ocultar elementos al inicio
         textPorta.SetActive(false);
         textNada.SetActive(false);
@@ -238,5 +241,9 @@ public class casa : MonoBehaviour
     public void OcultarTextCorrecto()
     {
         textCorrecto.SetActive(false);
+    }
+    public void quitexin()
+    {
+        TextoInicio.SetActive(false);
     }
 }

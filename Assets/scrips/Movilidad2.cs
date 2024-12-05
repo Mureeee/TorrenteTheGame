@@ -8,6 +8,7 @@ public class Movilidad2 : MonoBehaviour
 {
     private Rigidbody2D rigidbody;
     private float _vel;
+    
 
     // Start is called before the first frame update
     void Start()

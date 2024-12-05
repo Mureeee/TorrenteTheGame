@@ -14,9 +14,12 @@ public class cofre : MonoBehaviour
     public GameObject cofreAbierto;
     public GameObject llaveCasa;
     public GameObject portal;
+    public GameObject TextoInicio;
 
     void Start()
     {
+        TextoInicio.SetActive(true);
+        Invoke("quitexin", 5f);
         if (cofreAbierto != null) cofreAbierto.SetActive(false);
         if (llaveCasa != null) llaveCasa.SetActive(false);
         if (portal != null) portal.SetActive(false);
@@ -101,5 +104,10 @@ public class cofre : MonoBehaviour
     public void activarPortal()
     {
         if (portal != null) portal.SetActive(true);
+    }
+
+    public void quitexin()
+    {
+        TextoInicio.SetActive(false);
     }
 }
