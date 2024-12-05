@@ -26,6 +26,8 @@
         public GameObject pared;
         public GameObject textPortaCasa;
         public int vidasT;
+        public GameObject[] corazones;
+
 
         //--------------------------------------------
         public GameObject panelOperacion;
@@ -41,8 +43,8 @@
         [SerializeField] private TMP_InputField Respuesta;
         [SerializeField] private TMPro.TextMeshProUGUI componentTextVides;
 
-    // Start is called before the first frame update
-    void Start()
+        // Start is called before the first frame update
+        void Start()
         {
             _vel = 8f;
             rigidbody = GetComponent<Rigidbody2D>();
@@ -52,11 +54,12 @@
             {
                 transform.position = VariablesGlobales.posTorrenteGuardada;
             }
-        if (VariablesGlobales.escenaAnterior == "casa")
-        {
-            transform.position = VariablesGlobales.posTorrenteGuardada;
-        }
-        vidasT = 3;
+            if (VariablesGlobales.escenaAnterior == "casa")
+            {
+                transform.position = VariablesGlobales.posTorrenteGuardada;
+            }
+            vidasT = 3;
+            ActualizarCorazones();
         }
 
         // Update is called once per frame
@@ -129,12 +132,7 @@
             else
             {
                 Debug.Log("Respuesta incorrecta. Intenta de nuevo.");
-                vidasT--;
-                componentTextVides.text = "Vides: " + vidasT.ToString();
-                if (vidasT <= 0)
-                {
-                    SceneManager.LoadScene("Muerte");
-                }
+                reducirVida();
             }
         }
         else
@@ -144,8 +142,8 @@
     }
 
 
-    //MOVIMIENTO TORRENTE
-    public void moverTorrente()
+        //MOVIMIENTO TORRENTE
+        public void moverTorrente()
         {
             direccioIndicadaX = Input.GetAxisRaw("Horizontal");
             direccioIndicadaY = Input.GetAxisRaw("Vertical");
@@ -193,30 +191,30 @@
                 textPortaCasa.SetActive(true);
                 Invoke("interactuar2", 2f);
             }
-        if (objecteTocat.gameObject.tag == "sala")
-        {
-            VariablesGlobales.posTorrenteGuardada = transform.position;
-            if (VariablesGlobales.escenaAnterior != "cofre")
+            if (objecteTocat.gameObject.tag == "sala")
             {
-                SceneManager.LoadScene("cofre");
-            }
-        if (VariablesGlobales.escenaAnterior == "cofre")
-        {
-            paredMid.SetActive(false);
-            pared.SetActive(false); 
-        }
-        }
-        if(objecteTocat.gameObject.tag == "salida")
-        {
-            VariablesGlobales.posTorrenteGuardada = transform.position;
-            if (objecteTocat.gameObject.tag == "salida")
+                VariablesGlobales.posTorrenteGuardada = transform.position;
+                if (VariablesGlobales.escenaAnterior != "cofre")
+                {
+                    SceneManager.LoadScene("cofre");
+                }
+            if (VariablesGlobales.escenaAnterior == "cofre")
             {
-                Destroy(objecteTocat.gameObject);
-                SceneManager.LoadScene("casa");
+                paredMid.SetActive(false);
+                pared.SetActive(false); 
             }
-        }
+            }
+            if(objecteTocat.gameObject.tag == "salida")
+            {
+                VariablesGlobales.posTorrenteGuardada = transform.position;
+                if (objecteTocat.gameObject.tag == "salida")
+                {
+                    Destroy(objecteTocat.gameObject);
+                    SceneManager.LoadScene("casa");
+                }
+            }
         
-    }
+        }
 
         private void OnCollisionExit2D(Collision2D objecteTocat)
         {
@@ -237,7 +235,7 @@
                 estaEnP4 = false;
             }
         
-    }
+        }
 
         //DESACTIVAR PUERTA
         public void DesactivarPorta1()
@@ -246,15 +244,38 @@
         }
         public void SalirDelJuego()
         {
-    #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-    #else
-        Application.Quit();
-    #endif
+        #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            Application.Quit();
+        #endif
         }
         
         public void interactuar2()
         {
             textPortaCasa.SetActive(false);
+        }
+
+        private void ActualizarCorazones()
+        {
+            for (int i = 0; i < corazones.Length; i++)
+            {
+                corazones[i].SetActive(i < vidasT);
+            }
+        }
+
+        // REDUCE UNA VIDA Y ACTUALIZA LOS CORAZONES
+        public void reducirVida()
+        {
+            if (vidasT > 0)
+            {
+                vidasT--;
+                ActualizarCorazones();
+            }
+
+            if (vidasT <= 0)
+            {
+                SceneManager.LoadScene("Muerte");
+            }
         }
 }
