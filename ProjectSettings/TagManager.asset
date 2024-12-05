@@ -23,6 +23,7 @@ TagManager:
   - texto
   - garaje
   - final
+  - cochejg
   layers:
   - Default
   - TransparentFX

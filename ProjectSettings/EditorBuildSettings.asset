@@ -53,4 +53,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Muerte.unity
     guid: c6a86f8565be6ce4ea4cf73d1cfdb40c
+  - enabled: 1
+    path: Assets/Scenes/Huida.unity
+    guid: 03c6703c4f8efe04ca773465dd3272fd
   m_configObjects: {}
