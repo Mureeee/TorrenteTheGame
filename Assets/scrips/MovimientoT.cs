@@ -26,6 +26,7 @@
         public GameObject pared;
         public GameObject textPortaCasa;
         public int vidasT;
+        public GameObject TextoInicio;
 
         //--------------------------------------------
         public GameObject panelOperacion;
@@ -44,7 +45,9 @@
     // Start is called before the first frame update
     void Start()
         {
-            _vel = 8f;
+        TextoInicio.SetActive(true);
+        Invoke("quitexin", 5f);
+        _vel = 8f;
             rigidbody = GetComponent<Rigidbody2D>();
             panelOperacion.SetActive(false);
 
@@ -252,6 +255,11 @@
         Application.Quit();
     #endif
         }
+
+    public void quitexin()
+    {
+        TextoInicio.SetActive(false);
+    }
         
         public void interactuar2()
         {
