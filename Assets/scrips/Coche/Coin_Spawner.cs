@@ -2,25 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Coin_Spawner : MonoBehaviour
+public class GeneradorNumeros : MonoBehaviour
 {
-
-    public GameObject coinPrefab; // Asigna el prefab de moneda en el inspector
-    public float spawnInterval = 20f; // Intervalo entre spawns
-    public float minX = -1.8f, maxX = 1.8f; // Límites en el eje X
-    public float spawnY = 5f; // Altura donde se generan las monedas
+    [SerializeField] private GameObject prefabNum;
+    private Vector2 minpantalla, maxpantalla;
 
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("SpawnCoin", 10f, spawnInterval);
+        InvokeRepeating("GenerarNumero", 1f, 2f);
+        minpantalla = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
+        maxpantalla = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
+    }
+
+    private void GenerarNumero()
+    {
+        GameObject numero = Instantiate(prefabNum);
+
+        numero.transform.position = new Vector2(Random.Range(minpantalla.x, maxpantalla.x), maxpantalla.y);
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        float randomX = Random.Range(minX, maxX);
-        Vector3 spawnPosition = new Vector3(randomX, spawnY, 10);
-        Instantiate(coinPrefab, spawnPosition, Quaternion.identity);
+
     }
 }
