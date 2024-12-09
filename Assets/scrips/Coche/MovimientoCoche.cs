@@ -9,6 +9,7 @@ public class MovimientoCoche : MonoBehaviour
 
     public GameObject panelGameOver; // Panel que aparece al perder
     private bool esInvencible = false; // Si el jugador es invencible temporalmente
+    public GameObject Coche;
 
     void Start()
     {
