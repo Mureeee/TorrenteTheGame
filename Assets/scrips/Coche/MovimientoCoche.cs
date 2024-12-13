@@ -3,46 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-/*
- * Repas
- *
- * Que hem vist:
- *      - crear objectes a l'ascena.
- *      - crear EmptyObject(per exemple per fer el GeneradorNumeros).
- *      - Prefabs (per crear objectes quan el joc esta en execusio).
- *          - per crear-los: l'objecta que ja teniem creat l'arroseguem a la carpeta prefabs.
- *          - per crear un prefab a l'escena en execucio: metode Instantiate(variablePrefab).
- *              - variablePrefab: variable de tipus GameObject.
- *      - trobar posició objecta actual: transform.position
- *      - trobar marges pantalla: Camera.main.ViewportToWorldPoint().
- *      - [SerilizeFiled]: per fer que una variable private de la classe es mostri a l'editor de Unity.
- *      - Utilitzar una imatge/sprite com si fos mes d'una (contenint subimatges)
- *          - seleccionem l'esprite.
- *          - en l'opcio Sprite Mode canviem de single a multiple, i cliquem boto Apply
- *          - fem servir les opcions del boto sprite editor
- *      - Destruir objecte actual: Destroy(gameObject).
- *      - cridar un metode al cap de x segons: Invoke("NomMetode", xf).
- *      - cridar un metode al cap de x segons i cada y segons: InvokeRepeting("NomMetode", xf, yf).
- *      - com aturar un InvokeRepeating: CancelInvoke("NomMetode").
- *      - detectar objecte toca a un altre:
- *          - afagir als objectes que volem que es toquin, els components: BoxXollider2D i Rigibody2D.
- *          - en Boxcollider2D: activar checkbox IsTrigger.
- *          - en RigidBody2D: gravitiScale posar-ho a 0
- */
-
-
 public class MovimientoCoche : MonoBehaviour
 {
     private float _vel;
-
     Vector2 minPantalla, maxPantalla;
 
-    [SerializeField] private GameObject prefabProjectil;
-    [SerializeField] private GameObject prefabExplosio;
+    [SerializeField] private GameObject prefabExplosion;
+    [SerializeField] private GameObject cochePrefab;
+    [SerializeField] private Transform spawnZona; // Zona donde aparecerán los coches enemigos
 
-    [SerializeField] private TMPro.TextMeshProUGUI componentTextVides;
+    public GameObject[] corazones;
 
-    private int videsNau;
+    private int vidas;
 
     // Start is called before the first frame update
     void Start()
@@ -57,38 +29,26 @@ public class MovimientoCoche : MonoBehaviour
         minPantalla.x = minPantalla.x + meitatMidaImatgeX;
         maxPantalla.x = maxPantalla.x - meitatMidaImatgeX;
 
-        //Esto es lo mismo de arriba puesto de otra manera
+        vidas = 3;
+        ActualizarCorazones();
 
-        minPantalla.y += meitatMidaImatgeY;
-        maxPantalla.y -= meitatMidaImatgeY;
-
-        videsNau = 3;
+        // Inicia la generación de coches enemigos
+        InvokeRepeating("GenerarCocheEnemigo", 1f, 2f);
     }
 
     // Update is called once per frame
     void Update()
     {
         MoureNau();
-        DisparaProjectil();
-    }
-
-    private void DisparaProjectil()
-    {
-        if (Input.GetKeyDown("space"))
-        {
-            GameObject projectil = Instantiate(prefabProjectil);
-            projectil.transform.position = transform.position;
-        }
     }
 
     private void MoureNau()
     {
         float direccioIndicadaX = Input.GetAxisRaw("Horizontal");
         float direccioIndicadaY = Input.GetAxisRaw("Vertical");
-        Debug.Log("X: " + direccioIndicadaX + "Y: " + direccioIndicadaY);
         Vector2 direccioIndicada = new Vector2(direccioIndicadaX, direccioIndicadaY).normalized;
 
-        Vector2 novaPos = transform.position;//transform.position: pos actual de la nau
+        Vector2 novaPos = transform.position;
         novaPos = novaPos + direccioIndicada * _vel * Time.deltaTime;
 
         novaPos.x = Mathf.Clamp(novaPos.x, minPantalla.x, maxPantalla.x);
@@ -97,27 +57,44 @@ public class MovimientoCoche : MonoBehaviour
         transform.position = novaPos;
     }
 
-    private void OnTriggerEnter2D(Collider2D objectaTocat)
+    private void GenerarCocheEnemigo()
     {
-        if (objectaTocat.tag == "Numero")
-        {
-            videsNau--;
-            componentTextVides.text = "Vides: " + videsNau.ToString();
-
-            if (videsNau < 0)
-            {
-                GameObject explosio = Instantiate(prefabExplosio);
-                explosio.transform.position = transform.position;
-
-                SceneManager.LoadScene("PantallaResultats");
-
-                Destroy(gameObject);
-            }
-        }
-
-
+        float xPos = Random.Range(minPantalla.x, maxPantalla.x);
+        Vector2 spawnPos = new Vector2(xPos, spawnZona.position.y);
+        Instantiate(cochePrefab, spawnPos, Quaternion.identity);
     }
 
-    
+    private void OnTriggerEnter2D(Collider2D objecteTocat)
+    {
+        if (objecteTocat.gameObject.CompareTag("Enemigo")) // Asegúrate de asignar el tag "Enemigo" a los coches enemigos
+        {
+            vidas--;
 
+            GameObject explosion = Instantiate(prefabExplosion);
+            explosion.transform.position = objecteTocat.transform.position;
+
+            Destroy(objecteTocat.gameObject);
+
+            if (vidas <= 0)
+            {
+                GameObject jugadorExplosion = Instantiate(prefabExplosion);
+                jugadorExplosion.transform.position = transform.position;
+
+                Destroy(gameObject);
+                SceneManager.LoadScene("Muerte1");
+            }
+            else
+            {
+                ActualizarCorazones();
+            }
+        }
+    }
+
+    private void ActualizarCorazones()
+    {
+        for (int i = 0; i < corazones.Length; i++)
+        {
+            corazones[i].SetActive(i < vidas);
+        }
+    }
 }

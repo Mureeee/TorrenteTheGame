@@ -19,6 +19,10 @@ public class BotonReturn2 : MonoBehaviour
     {
         SceneManager.LoadScene("sala2");
     }
+    public void volverhuida()
+    {
+        SceneManager.LoadScene("Huida");
+    }
 
     public void salir()
     {
