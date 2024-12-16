@@ -20,6 +20,11 @@ public class BotonReturn2 : MonoBehaviour
         SceneManager.LoadScene("sala2");
     }
 
+    public void volveraljuegohuida()
+    {
+        SceneManager.LoadScene("Huida");
+    }
+
     public void salir()
     {
 #if UNITY_EDITOR

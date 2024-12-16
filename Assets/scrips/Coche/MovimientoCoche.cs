@@ -6,11 +6,10 @@ public class MovimientoCoche : MonoBehaviour
     private float _vel = 5f; // Asignar un valor por defecto para la velocidad
     private Vector2 _minPantalla, _maxPantalla;
 
-    [SerializeField] private GameObject prefabExplosion;
+    [SerializeField] private GameObject prefabExplosio;
     [SerializeField] private GameObject cochePrefab;
     public GameObject[] corazones;
     public int vidasT;
-    [SerializeField] private TMPro.TextMeshProUGUI componentTextVides;
 
     void Start()
     {
@@ -53,19 +52,24 @@ public class MovimientoCoche : MonoBehaviour
     {
         if (objetoTocado.CompareTag("Coche")) // Usar la etiqueta "Coche" para la comparación
         {
-            Debug.Log("Choque!");
+            
             vidasT--;
+            Debug.Log("vidasT= " + vidasT);
 
             if (vidasT > 0)
             {
-                GameObject explosion = Instantiate(prefabExplosion);
-                explosion.transform.position = transform.position;
+                
+                //GameObject explosion = Instantiate(prefabExplosio);
+                
+                //explosion.transform.position = transform.position;
             }
             else
             {
                 // Cargar la pantalla de "Game Over" u otro manejo de fin de juego
                 Debug.Log("Fin del juego");
+                GameObject explosio = Instantiate(prefabExplosio);
                 Destroy(gameObject);
+                SceneManager.LoadScene("Muerte 1");
             }
 
             ActualizarCorazones(); // Actualizar los corazones
@@ -79,11 +83,6 @@ public class MovimientoCoche : MonoBehaviour
             corazones[i].SetActive(i < vidasT);
         }
 
-        // Opcional: Actualizar el texto de vidas en pantalla si lo tienes configurado
-        if (componentTextVides != null)
-        {
-            componentTextVides.text = "Vidas: " + vidasT;
-        }
     }
 
     public void reducirVida()
@@ -98,5 +97,8 @@ public class MovimientoCoche : MonoBehaviour
         {
             SceneManager.LoadScene("Muerte"); // Cambiar a la escena de muerte
         }
+
     }
+    
+
 }

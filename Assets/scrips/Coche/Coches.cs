@@ -44,6 +44,7 @@ public class Coches : MonoBehaviour
     {
         if (objecteTocat.tag == "Coche")
         {
+            Debug.Log("cochetocao");
             GameObject explosio = Instantiate(prefabExplosio);
             explosio.transform.position = transform.position;
 

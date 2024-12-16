@@ -326,8 +326,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -631037027
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 44b527b926c56eb42b9b679085ba8464, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -901,112 +901,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!1 &1271977574
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1271977577}
-  - component: {fileID: 1271977576}
-  - component: {fileID: 1271977575}
-  m_Layer: 0
-  m_Name: explosion_0
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!95 &1271977575
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1271977574}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5e07655ef83f15f4f89029303aa7c3b4, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!212 &1271977576
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1271977574}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 258312590, guid: 88378504736f8ee4eae0343fb83bd07b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1.2, y: 1.2}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!4 &1271977577
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1271977574}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.449409, y: 3.3637443, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1326016749
 GameObject:
   m_ObjectHideFlags: 0
@@ -1101,11 +995,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6229d0ddc4323c4d9d5b122ffb6d200, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabExplosion: {fileID: 6940903962015852557, guid: 676b669a492eb1e4fb606b3780967da9, type: 3}
+  prefabExplosio: {fileID: 3994423876106997655, guid: a450680725cdfe349bcd88eb478d3443, type: 3}
   cochePrefab: {fileID: 5946921589892690803, guid: 4c81140ed8dfc79449609415fe4994eb, type: 3}
   corazones: []
   vidasT: 0
-  componentTextVides: {fileID: 0}
 --- !u!212 &1326016754
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1144,8 +1037,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1696702119
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: ff30de9954f2e0144a6d8d7650361ade, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1170,14 +1063,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6229d0ddc4323c4d9d5b122ffb6d200, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabExplosion: {fileID: 6940903962015852557, guid: 676b669a492eb1e4fb606b3780967da9, type: 3}
+  prefabExplosio: {fileID: 0}
   cochePrefab: {fileID: 5946921589892690803, guid: 4c81140ed8dfc79449609415fe4994eb, type: 3}
   corazones:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 781577225}
+  - {fileID: 1727067803}
+  - {fileID: 1573999997}
   vidasT: 3
-  componentTextVides: {fileID: 0}
 --- !u!50 &1326016757
 Rigidbody2D:
   serializedVersion: 4
@@ -1193,7 +1085,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -1204,7 +1096,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 6
 --- !u!1 &1573999997
 GameObject:
   m_ObjectHideFlags: 0
@@ -1602,4 +1494,3 @@ SceneRoots:
   - {fileID: 2077687734}
   - {fileID: 1326016750}
   - {fileID: 961319663}
-  - {fileID: 1271977577}

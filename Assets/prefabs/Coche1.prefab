@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6115980459159146006}
   - component: {fileID: 1316079175440702724}
   - component: {fileID: 2239754338814618760}
+  - component: {fileID: -3243564304634690088}
   m_Layer: 0
   m_Name: Coche1
   m_TagString: Coche
@@ -72,8 +73,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1696702119
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: a0daf50c015ea90479bb5c344f41ca4a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -109,7 +110,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ada594a338f01e74e827c1dd9cf0f5ed, type: 3}
   - {fileID: 21300000, guid: d01e545aa2d5ee149bf0d2935d88e907, type: 3}
   - {fileID: 21300000, guid: 77674f00ad12a0c409d6ab747db982bb, type: 3}
-  prefabExplosio: {fileID: 6940903962015852557, guid: 676b669a492eb1e4fb606b3780967da9, type: 3}
+  prefabExplosio: {fileID: 3994423876106997655, guid: a450680725cdfe349bcd88eb478d3443, type: 3}
 --- !u!61 &2239754338814618760
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -139,7 +140,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -155,3 +156,30 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.44, y: 3.19}
   m_EdgeRadius: 0
+--- !u!50 &-3243564304634690088
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5946921589892690803}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
