@@ -22,7 +22,7 @@ public class BotonReturn2 : MonoBehaviour
 
     public void volveraljuegohuida()
     {
-        SceneManager.LoadScene("Huida");
+        SceneManager.LoadScene("huida");
     }
 
     public void salir()

@@ -54,7 +54,6 @@ public class MovimientoCoche : MonoBehaviour
         {
             
             vidasT--;
-            Debug.Log("vidasT= " + vidasT);
 
             if (vidasT > 0)
             {
