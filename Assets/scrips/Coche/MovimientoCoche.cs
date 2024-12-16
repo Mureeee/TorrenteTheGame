@@ -1,123 +1,102 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-/*
- * Repas
- *
- * Que hem vist:
- *      - crear objectes a l'ascena.
- *      - crear EmptyObject(per exemple per fer el GeneradorNumeros).
- *      - Prefabs (per crear objectes quan el joc esta en execusio).
- *          - per crear-los: l'objecta que ja teniem creat l'arroseguem a la carpeta prefabs.
- *          - per crear un prefab a l'escena en execucio: metode Instantiate(variablePrefab).
- *              - variablePrefab: variable de tipus GameObject.
- *      - trobar posició objecta actual: transform.position
- *      - trobar marges pantalla: Camera.main.ViewportToWorldPoint().
- *      - [SerilizeFiled]: per fer que una variable private de la classe es mostri a l'editor de Unity.
- *      - Utilitzar una imatge/sprite com si fos mes d'una (contenint subimatges)
- *          - seleccionem l'esprite.
- *          - en l'opcio Sprite Mode canviem de single a multiple, i cliquem boto Apply
- *          - fem servir les opcions del boto sprite editor
- *      - Destruir objecte actual: Destroy(gameObject).
- *      - cridar un metode al cap de x segons: Invoke("NomMetode", xf).
- *      - cridar un metode al cap de x segons i cada y segons: InvokeRepeting("NomMetode", xf, yf).
- *      - com aturar un InvokeRepeating: CancelInvoke("NomMetode").
- *      - detectar objecte toca a un altre:
- *          - afagir als objectes que volem que es toquin, els components: BoxXollider2D i Rigibody2D.
- *          - en Boxcollider2D: activar checkbox IsTrigger.
- *          - en RigidBody2D: gravitiScale posar-ho a 0
- */
-
-
 public class MovimientoCoche : MonoBehaviour
 {
-    private float _vel;
+    private float _vel = 5f; // Asignar un valor por defecto para la velocidad
+    private Vector2 _minPantalla, _maxPantalla;
 
-    Vector2 minPantalla, maxPantalla;
-
-    [SerializeField] private GameObject prefabProjectil;
-    [SerializeField] private GameObject prefabExplosio;
-
+    [SerializeField] private GameObject prefabExplosion;
+    [SerializeField] private GameObject cochePrefab;
+    public GameObject[] corazones;
+    public int vidasT;
     [SerializeField] private TMPro.TextMeshProUGUI componentTextVides;
 
-    private int videsNau;
-
-    // Start is called before the first frame update
     void Start()
     {
-        _vel = 6;
-        minPantalla = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
-        maxPantalla = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
+        _minPantalla = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
+        _maxPantalla = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
 
-        float meitatMidaImatgeX = GetComponent<SpriteRenderer>().sprite.bounds.size.x * transform.localScale.x / 2;
-        float meitatMidaImatgeY = GetComponent<SpriteRenderer>().sprite.bounds.size.y * transform.localScale.y / 2;
+        float mitadAnchoTarget = GetComponent<SpriteRenderer>().sprite.bounds.size.x * transform.localScale.x / 2;
+        float mitadAltoTarget = GetComponent<SpriteRenderer>().sprite.bounds.size.y * transform.localScale.y / 2;
 
-        minPantalla.x = minPantalla.x + meitatMidaImatgeX;
-        maxPantalla.x = maxPantalla.x - meitatMidaImatgeX;
+        _minPantalla.x += mitadAnchoTarget;
+        _maxPantalla.x -= mitadAnchoTarget;
 
-        //Esto es lo mismo de arriba puesto de otra manera
+        _minPantalla.y += mitadAltoTarget;
+        _maxPantalla.y -= mitadAltoTarget;
 
-        minPantalla.y += meitatMidaImatgeY;
-        maxPantalla.y -= meitatMidaImatgeY;
-
-        videsNau = 3;
+        vidasT = 3; // Establecer las vidas iniciales
+        ActualizarCorazones(); // Actualizar los corazones
     }
 
-    // Update is called once per frame
     void Update()
     {
-        MoureNau();
-        DisparaProjectil();
+        MoverNau();
     }
 
-    private void DisparaProjectil()
+    private void MoverNau()
     {
-        if (Input.GetKeyDown("space"))
+        float direccionHorizontal = Input.GetAxisRaw("Horizontal");
+        float direccionVertical = Input.GetAxisRaw("Vertical");
+
+        Vector2 direccionClamped = new Vector2(direccionHorizontal, direccionVertical).normalized;
+        Vector2 nuevoPos = (Vector2)transform.position + direccionClamped * _vel * Time.deltaTime;
+
+        nuevoPos.x = Mathf.Clamp(nuevoPos.x, _minPantalla.x, _maxPantalla.x);
+        nuevoPos.y = Mathf.Clamp(nuevoPos.y, _minPantalla.y, _maxPantalla.y);
+
+        transform.position = nuevoPos;
+    }
+
+    private void OnTriggerEnter2D(Collider2D objetoTocado)
+    {
+        if (objetoTocado.CompareTag("Coche")) // Usar la etiqueta "Coche" para la comparación
         {
-            GameObject projectil = Instantiate(prefabProjectil);
-            projectil.transform.position = transform.position;
-        }
-    }
+            Debug.Log("Choque!");
+            vidasT--;
 
-    private void MoureNau()
-    {
-        float direccioIndicadaX = Input.GetAxisRaw("Horizontal");
-        float direccioIndicadaY = Input.GetAxisRaw("Vertical");
-        Debug.Log("X: " + direccioIndicadaX + "Y: " + direccioIndicadaY);
-        Vector2 direccioIndicada = new Vector2(direccioIndicadaX, direccioIndicadaY).normalized;
-
-        Vector2 novaPos = transform.position;//transform.position: pos actual de la nau
-        novaPos = novaPos + direccioIndicada * _vel * Time.deltaTime;
-
-        novaPos.x = Mathf.Clamp(novaPos.x, minPantalla.x, maxPantalla.x);
-        novaPos.y = Mathf.Clamp(novaPos.y, minPantalla.y, maxPantalla.y);
-
-        transform.position = novaPos;
-    }
-
-    private void OnTriggerEnter2D(Collider2D objectaTocat)
-    {
-        if (objectaTocat.tag == "Numero")
-        {
-            videsNau--;
-            componentTextVides.text = "Vides: " + videsNau.ToString();
-
-            if (videsNau < 0)
+            if (vidasT > 0)
             {
-                GameObject explosio = Instantiate(prefabExplosio);
-                explosio.transform.position = transform.position;
-
-                SceneManager.LoadScene("PantallaResultats");
-
+                GameObject explosion = Instantiate(prefabExplosion);
+                explosion.transform.position = transform.position;
+            }
+            else
+            {
+                // Cargar la pantalla de "Game Over" u otro manejo de fin de juego
+                Debug.Log("Fin del juego");
                 Destroy(gameObject);
             }
+
+            ActualizarCorazones(); // Actualizar los corazones
         }
-
-
     }
 
-    
+    private void ActualizarCorazones()
+    {
+        for (int i = 0; i < corazones.Length; i++)
+        {
+            corazones[i].SetActive(i < vidasT);
+        }
 
+        // Opcional: Actualizar el texto de vidas en pantalla si lo tienes configurado
+        if (componentTextVides != null)
+        {
+            componentTextVides.text = "Vidas: " + vidasT;
+        }
+    }
+
+    public void reducirVida()
+    {
+        if (vidasT > 0)
+        {
+            vidasT--;
+            ActualizarCorazones();
+        }
+
+        if (vidasT <= 0)
+        {
+            SceneManager.LoadScene("Muerte"); // Cambiar a la escena de muerte
+        }
+    }
 }

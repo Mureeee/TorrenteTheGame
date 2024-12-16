@@ -39,17 +39,18 @@ public class Coches : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    /*private void OnTriggerEnter2D(Collider2D objecteTocat)
+    
+    private void OnTriggerEnter2D(Collider2D objecteTocat)
     {
-        if (objecteTocat.tag == "Jugador" || objecteTocat.tag == "ProyectilJugador")
+        if (objecteTocat.tag == "Coche")
         {
             GameObject explosio = Instantiate(prefabExplosio);
             explosio.transform.position = transform.position;
 
-            DadesGlobals.punts += valorCoche;
+            //DadesGlobals.punts += valorNumero;
 
             Destroy(gameObject);
         }
-    }*/
+    }
 }
 
