@@ -20,7 +20,7 @@ public class final : MonoBehaviour
     {
         if (objecteTocat.gameObject.tag == "final")
         {
-            SceneManager.LoadScene("Fin");
+            SceneManager.LoadScene("garaje");
         }
     }
 }
