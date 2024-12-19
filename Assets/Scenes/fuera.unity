@@ -5201,6 +5201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   torr: 1
   torrente: {fileID: 1689618393}
+  TextoInicio: {fileID: 709007136}
 --- !u!50 &1689618398
 Rigidbody2D:
   serializedVersion: 4
