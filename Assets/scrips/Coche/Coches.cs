@@ -92,5 +92,6 @@ public class Coches : MonoBehaviour
 
         // Cargar la escena inicial o de reinicio
         SceneManager.LoadScene("Muerte 1");
+        //dawdaw
     }
 }
