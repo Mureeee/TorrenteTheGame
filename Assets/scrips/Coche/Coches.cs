@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement; // Para cambiar de escena
+using UnityEngine.SceneManagement;
 
 public class Coches : MonoBehaviour
 {
@@ -15,11 +13,8 @@ public class Coches : MonoBehaviour
 
     [SerializeField] private GameObject prefabExplosio;
 
-    private static int contadorCoches = 0; // Contador de coches global
-    private static int incrementoVelocidad = 20; // Cada cuántos coches aumentar la velocidad
     private static int vidas = 3; // Vidas del jugador
 
-    // Start is called before the first frame update
     void Start()
     {
         vel = 15f;
@@ -31,7 +26,6 @@ public class Coches : MonoBehaviour
         GetComponent<SpriteRenderer>().sprite = arraySpritesCoches[valorCoche];
     }
 
-    // Update is called once per frame
     void Update()
     {
         Vector2 posActual = transform.position;
@@ -40,22 +34,8 @@ public class Coches : MonoBehaviour
 
         if (transform.position.y < minPantalla.y)
         {
-            // Incrementar contador de coches cuando se destruye
-            contadorCoches++;
-            Debug.Log("Coches pasados: " + contadorCoches);
-
-            // Incrementar la velocidad cada 20 coches
-            if (contadorCoches % incrementoVelocidad == 0)
-            {
-                vel += 2.5f; // Incremento de 2.5
-                Debug.Log("Velocidad aumentada a: " + vel);
-            }
-
-            // Comprobar si se alcanzó el límite de 120 coches
-            if (contadorCoches >= 120)
-            {
-                SceneManager.LoadScene("Final del Juego");
-            }
+            // Incrementar el contador de coches pasados
+            FindObjectOfType<ContadorCoche>().IncrementarContador();
 
             Destroy(gameObject);
         }
@@ -65,15 +45,13 @@ public class Coches : MonoBehaviour
     {
         if (objecteTocat.tag == "Coche")
         {
-            Debug.Log("cochetocao");
+            Debug.Log("Coche tocado");
             GameObject explosio = Instantiate(prefabExplosio);
             explosio.transform.position = transform.position;
 
             // Reducir el contador de coches y vidas
-            contadorCoches = Mathf.Max(0, contadorCoches - 5); // Reducir coches, mínimo 0
+            FindObjectOfType<ContadorCoche>().RestarContador(5); // Resta 5 coches
             vidas--;
-
-            Debug.Log($"Vidas restantes: {vidas}. Coches restantes: {contadorCoches}");
 
             if (vidas <= 0)
             {
@@ -87,11 +65,7 @@ public class Coches : MonoBehaviour
     private void ReiniciarJuego()
     {
         Debug.Log("Reiniciando el juego...");
-        contadorCoches = 0; // Reiniciar coches pasados
         vidas = 3; // Restaurar vidas
-
-        // Cargar la escena inicial o de reinicio
         SceneManager.LoadScene("Muerte 1");
-        //dawdaw
     }
 }
