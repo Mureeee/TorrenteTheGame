@@ -629,12 +629,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "El juego sigue a Torrente, el protagonista, en una serie de ca\xF3ticas
-    situaciones en las que debe escapar de una casa desconocida, huir de la persecuci\xF3n
-    de un segurata y enfrentarse a su jefe de polic\xEDa. A lo largo del juego, Torrente
-    se ve obligado a resolver operaciones matem\xE1ticas para avanzar, desbloquear
-    objetos y activar funciones especiales, como el uso de monedas                                                                                               
-    para mejorar su rendimiento en situaciones de alta velocidad.\n\n"
+  m_text: "\rEl joc segueix a Torrent, el protagonista, en una s\xE8rie de ca\xF2tiques
+    situacions en les quals ha d'escapar d'una casa desconeguda, fugir de la persecuci\xF3
+    d'un segurata i enfrontar-se al seu cap de policia. Al llarg del joc, Torrent
+    es veu obligat a resoldre operacions matem\xE0tiques per a avan\xE7ar, desbloquejar
+    objectes i activar funcions especials, com l'\xFAs de monedes per a millorar
+    el seu rendiment en situacions d'alta velocitat.\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
