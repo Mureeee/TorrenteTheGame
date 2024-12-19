@@ -1063,7 +1063,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6229d0ddc4323c4d9d5b122ffb6d200, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabExplosio: {fileID: 0}
+  prefabExplosio: {fileID: 3994423876106997655, guid: a450680725cdfe349bcd88eb478d3443, type: 3}
   cochePrefab: {fileID: 5946921589892690803, guid: 4c81140ed8dfc79449609415fe4994eb, type: 3}
   corazones:
   - {fileID: 781577225}
