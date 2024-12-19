@@ -91,6 +91,6 @@ public class Coches : MonoBehaviour
         vidas = 3; // Restaurar vidas
 
         // Cargar la escena inicial o de reinicio
-        SceneManager.LoadScene("Escena Inicial");
+        SceneManager.LoadScene("Muerte 1");
     }
 }
